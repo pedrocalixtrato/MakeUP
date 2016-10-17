@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile">
+	
+	<f:view renderKitId="PRIMEFACES_MOBILE" />
+
+<h:head style="background-color:#EE799F;border:0px;">
+<h1></h1>
+		<h:form >
+			<p:tabMenu>
+			    <p:menuitem  value="Home" icon="ui-icon-home"  iconPos="top"/>
+			    <p:menuitem  value="New" icon="ui-icon-plus"  iconPos="top"
+			    			 outcome="/servico/Servico.xhtml"/> 
+			    <p:menuitem value="Search" icon="ui-icon-search"  iconPos="top"/>
+			</p:tabMenu>
+		</h:form>
+	
+</h:head>
+<h1>Pesquisa</h1>
+	
+
+<h:body  >
+		
+		<h:form id="frm">
+		
+		<p:panelGrid id="painel" style="width: 100%">
+		
+				<p:outputLabel value="Data Inicial" />
+				<p:calendar value="#{servicoBean.filtro.dataInicial}"
+					pattern="dd/MM/yyyy" />
+
+				<p:outputLabel value="Data final" />
+				<p:calendar  value="#{servicoBean.filtro.dataFinal}"
+					pattern="dd/MM/yyyy" />
+				<h1></h1>
+				<p:outputLabel value="Total: " />
+				<h:outputText value="R$ #{servicoBean.somarTotal}" />
+
+			</p:panelGrid>
+			
+			<p:commandButton value="Pesquisar" actionListener="#{servicoBean.listar()}"
+							update="frm"/>
+							
+			<p:dataTable var="serv" value="#{servicoBean.servicos}" reflow="true"
+						 paginator="true" paginatorAlwaysVisible="true"
+						 paginatorPosition="bottom">	
+						 
+				       
+		 
+		        <p:column headerText="Nome">
+		            <h:outputText value="#{serv.nome}" />
+		        </p:column>
+		 
+		        <p:column headerText="Valor">
+		            <h:outputText value="#{serv.valor}" />
+		        </p:column>
+		 
+		        <p:column headerText="Data">
+		            <h:outputText value="#{serv.data}" >
+		            <f:convertDateTime pattern="dd/MM/yyyy"/>
+		            </h:outputText>
+		        </p:column>
+		        		        
+	    	</p:dataTable>
+	    
+	    </h:form>				
+		
+</h:body>
+
+
+
+</html>

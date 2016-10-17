@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile">
+	
+	<f:view renderKitId="PRIMEFACES_MOBILE" />
+
+<h:head style="background-color:#EE799F;border:0px;">
+<h1></h1>
+		<h:form >
+			<p:tabMenu>
+			    <p:menuitem  value="Home" icon="ui-icon-home"  iconPos="top"/>
+			    <p:menuitem  value="New" icon="ui-icon-plus"  iconPos="top"
+			    			 outcome="/servico/Servico.xhtml"/> 
+			    <p:menuitem value="Search" icon="ui-icon-search"  iconPos="top"
+			    			outcome="/servico/ServicoPesquisa.xhtml"/>
+			</p:tabMenu>
+		</h:form>
+	
+</h:head>
+<h1>MakeUp</h1>
+	
+
+<h:body  >
+		<p:growl id="msg" showDetail="true" />
+		<h1></h1>
+		
+		<h:form style="background-color:#EE799F;">		
+		
+		
+		<p:outputLabel value="Nome" style="color:#FFFFFF;"/>
+		<p:inputText value="#{servicoBean.servico.nome}" />
+		
+		<p:outputLabel value="Data" style="color:#FFFFFF;"/>
+		<p:calendar value="#{servicoBean.servico.data}" />
+		
+						
+		<p:outputLabel value="Valor" style="color:#FFFFFF;"/>
+		<p:inputText value="#{servicoBean.servico.valor}" />
+						
+							
+		<p:outputLabel value="Endereço" style="color:#FFFFFF;"/>
+		<p:inputText value="#{servicoBean.servico.endereco}" />
+		
+		  <p:outputLabel value="Status" style="color:#FFFFFF;"/>
+    	<p:selectOneMenu value="#{servicoBean.servico.tipo}">
+	        <f:selectItem itemLabel="Status" itemValue="" />
+	        <f:selectItem itemLabel="Efetivada" itemValue="efetivada" />
+	        <f:selectItem itemLabel="Aberto" itemValue="Aberto" />
+	        <f:selectItem itemLabel="Confirmar" itemValue="Confirmar" />
+    	</p:selectOneMenu>
+		
+		<p:outputLabel value="Observaçao" style="color:#FFFFFF;" />
+   		 <p:inputTextarea value="#{servicoBean.servico.descricao}" />
+		
+		
+			
+			<p:commandButton value="salvar" actionListener="#{servicoBean.salvar()}"
+				update="msg" icon="ui-icon-carat-d" 
+				style="background-color:#00CD00;color:#FFFFFF;" />
+				
+				<p:separator></p:separator>
+		</h:form>
+		
+									
+		
+</h:body>
+
+
+
+</html>
